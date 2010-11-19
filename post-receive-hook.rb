@@ -22,7 +22,7 @@ include Grit
 class GitPush 
     include HTTParty
     #base_uri "localhost:3000/admin"
-    base_uri "http://morning-sunset-84.heroku.com/admin"
+    base_uri "http://turngitin.heroku.com/admin"
     
     def self.report(info)
         options = {:query => {:payload => info} }

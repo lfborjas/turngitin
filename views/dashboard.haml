@@ -4,18 +4,30 @@
     %meta{:charset=>"utf-8"}
     %title Examen 2 
     %link{:rel=>"stylesheet", :href=>"/style.css"}
+    %script{:src=>"https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
+  
+    :javascript
+      $(function(){
+        $(".studentstats").click(function(e){$(e.target).find(".filestats").toggle();});
+        $(".commiter").click(function(e){
+          var c = $(e.target).attr("id").split("_")[0];
+          $("a strong").not("[id^='c']").hide();
+        });
+      });
   %body
     %h1 Consola de entregas
     %ul
       -@messages.each do |message|
         %li.studentstats 
-          %strong= message["commiter"]
+          %a{:href=>"#"}
+            %strong.commiter{:id=>"#{message["commiter"]}_#{message["stats"]["id"]}"}= message["commiter"]
           subió en 
-          %em= message["when"]
+          %em= DateTime.parse(message["when"]).new_offset(-6.0/24).to_s
           a
           %span.repo= message["repo"]
+          %p.info= "el último commit recibido: #{message["stats"]["id"]}"
           %p.info="#{message["stats"]["files"].length} archivos con #{message["stats"]["additions"]} adiciones y #{message["stats"]["deletions"]} borrados: "
-          %ul.filestats
+          %ul.filestats{:style=>"display:none;"}
             -message["stats"]["files"].each do |filestats|
               %li
                 = "#{filestats[0]}: "
