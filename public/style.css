@@ -4,6 +4,16 @@ body{
     margin: 0 auto;
 }
 
+#about{
+    font-size: 0.7em;
+    color: #777;
+}
+
+a{
+    color: #176092;
+}
+
+
 .filestats{
     background-color: #F6F6EF;
     font-family: "Courier New", Courier, monospace;
@@ -21,6 +31,10 @@ body{
 
 .studentstats{
     border: 1px dotted #444;
+}
+
+.studentstats:hover {
+    background-color: #eBeBeB;
 }
 
 .repo{
