@@ -43,8 +43,8 @@
           %a{:href=>"#"}
             -@commiter = message["commiter"].gsub(/ <.*>/, '')
             %strong.commiter{:id=>"#{@commiter}_#{message["stats"]["id"]}"}= @commiter
-          subió en 
-          %em= DateTime.parse(message["when"]).new_offset(-6.0/24).to_s
+          subió cambios el 
+          %em.date= DateTime.parse(message["when"]).new_offset(-6.0/24).strftime("%d/%b/%Y a las %H:%M")
           a
           %span.repo= message["repo"]
           %p.info= "commit recibido: #{message["stats"]["id"]}"
