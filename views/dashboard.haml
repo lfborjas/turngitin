@@ -9,24 +9,45 @@
   
     :javascript
       $(function(){
+        //esconder el link de "ver todos" por defecto
         $("#all").hide();
+        //los clicks para mostrar los archivos
         $(".studentstats").click(function(e){$(e.target).find(".filestats").toggle();});
         $(".info").click(function(e){$(e.target).siblings(".filestats").toggle();});
+
+        //el click para sólo mostrar los archivos de una persona
         $(".commiter").click(function(e){
           var c = $(e.target).attr("id").split("_")[0];
           $("a strong").not("[id^='"+c+"']").parents(".studentstats").hide();
           $("#all").show();
         });
+
+        //lo que muestra la info de qué es esto
         $("#whatsthis").click(function(){$("#about").toggle()});
+
+        //lo que muestra los commits de todos cuando se está en modo ver una sola
         $("#all").click(function(){
           $(".studentstats:hidden").show();
           $("#all").hide();
         });
+
+        //contar los participantes únicos:
+        var a = [];
+        $(".studentstats").each(function(j,v){
+          var i = $(v).find("strong").attr("id").split("_")[0]; 
+          if(a.indexOf(i)==-1){
+            a.push(i);
+          }
+        });
+        //mostrar los participantes únicos
+        $("#total").text(a.length+" participantes");
       });
   %body
     %h1 Consola de entregas: examen 2, progra 4.
-    %a#whatsthis{:href=>"#"} Qué es esto?
-    %a#all{:href=>"#"} Ver todos
+    #general-info
+      %a#whatsthis{:href=>"#"} Qué es esto?
+      %a#all{:href=>"#"} Ver todos
+      %span#total ? participantes
     #about{:style=>"display:none;"}
       :markdown
         Aquí podés tener retroalimentación de los push que hacés al servidor de entregas. 

@@ -52,3 +52,9 @@ a{
 ul{
     list-style-type: none;
 }
+
+#general-info #total{
+    float: right;
+    color: #555;
+
+}
