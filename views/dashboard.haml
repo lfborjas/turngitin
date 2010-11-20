@@ -38,7 +38,7 @@
         así que no te preocupés.
 
     %ul
-      -@messages.each do |message|
+      -@messages.reverse.each do |message|
         %li.studentstats
           %a{:href=>"#"}
             -@commiter = message["commiter"].gsub(/ <.*>/, '')
