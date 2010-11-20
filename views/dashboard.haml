@@ -8,17 +8,24 @@
   
     :javascript
       $(function(){
+        $("#all").hide();
         $(".studentstats").click(function(e){$(e.target).find(".filestats").toggle();});
         $(".info").click(function(e){$(e.target).siblings(".filestats").toggle();});
         $(".commiter").click(function(e){
           var c = $(e.target).attr("id").split("_")[0];
           $("a strong").not("[id^='"+c+"']").parents(".studentstats").hide();
+          $("#all").show();
         });
         $("#whatsthis").click(function(){$("#about").toggle()});
+        $("#all").click(function(){
+          $(".studentstats:hidden").show();
+          $("#all").hide();
+        });
       });
   %body
     %h1 Consola de entregas: examen 2, progra 4.
     %a#whatsthis{:href=>"#"} Qué es esto?
+    %a#all{:href=>"#"} Ver todos
     #about{:style=>"display:none;"}
       :markdown
         Aquí podés tener retroalimentación de los push que hacés al servidor de entregas. 

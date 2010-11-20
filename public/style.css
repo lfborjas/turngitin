@@ -48,3 +48,7 @@ a{
     font-size: 0.9em;
     color: #666;
 }
+
+ul{
+    list-style-type: none;
+}
